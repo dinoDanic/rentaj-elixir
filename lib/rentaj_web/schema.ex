@@ -19,10 +19,20 @@ defmodule RentajWeb.Schema do
   mutation do
     @desc "Create a new link"
     field :create_link, :link do
+      # middleware(RentajWeb.Middleare)
       arg(:url, non_null(:string))
       arg(:description, non_null(:string))
 
       resolve(&NewsResolver.create_link/3)
     end
+  end
+
+  def middleware(middleware, _field, %Absinthe.Type.Object{identifier: identifier})
+      when identifier in [:query, :subscription, :mutation] do
+    [RentajWeb.Middleare | middleware]
+  end
+
+  def middleware(middleware, _field, _object) do
+    middleware
   end
 end

@@ -5,12 +5,16 @@ defmodule RentajWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :graphql do
+    plug RentajWeb.Context
+  end
+
   scope "/api" do
-    pipe_through :api
+    pipe_through :graphql
 
     forward "/graphiql", Absinthe.Plug.GraphiQL,
       schema: RentajWeb.Schema,
-      interface: :simple,
+      interface: :playground,
       context: %{pubsub: RentajWeb.Endpoint}
   end
 end
