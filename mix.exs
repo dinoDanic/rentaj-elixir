@@ -44,7 +44,9 @@ defmodule Rentaj.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.2"},
       {:absinthe, "~> 1.7"},
-      {:absinthe_plug, "~> 1.5"}
+      {:absinthe_plug, "~> 1.5"},
+      {:guardian, "~> 2.3"},
+      {:argon2_elixir, "~> 4.0"}
     ]
   end
 

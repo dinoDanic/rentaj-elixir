@@ -8,7 +8,7 @@ defmodule Rentaj.AccountsTest do
 
     import Rentaj.AccountsFixtures
 
-    @invalid_attrs %{token: nil, email: nil, password_hash: nil}
+    @invalid_attrs %{token: nil, email: nil, password: nil}
 
     test "list_users/0 returns all users" do
       user = user_fixture()
@@ -21,12 +21,9 @@ defmodule Rentaj.AccountsTest do
     end
 
     test "create_user/1 with valid data creates a user" do
-      valid_attrs = %{token: "some token", email: "some email", password_hash: "some password_hash"}
-
-      assert {:ok, %User{} = user} = Accounts.create_user(valid_attrs)
-      assert user.token == "some token"
-      assert user.email == "some email"
-      assert user.password_hash == "some password_hash"
+      assert {:ok, %User{} = user} = UserManager.create_user(@valid_attrs)
+      assert {:ok, user} == Argon2.check_pass(user, "some password", hash_key: :password)
+      assert user.email == "some eamil"
     end
 
     test "create_user/1 with invalid data returns error changeset" do
@@ -35,12 +32,9 @@ defmodule Rentaj.AccountsTest do
 
     test "update_user/2 with valid data updates the user" do
       user = user_fixture()
-      update_attrs = %{token: "some updated token", email: "some updated email", password_hash: "some updated password_hash"}
-
-      assert {:ok, %User{} = user} = Accounts.update_user(user, update_attrs)
-      assert user.token == "some updated token"
-      assert user.email == "some updated email"
-      assert user.password_hash == "some updated password_hash"
+      assert {:ok, %User{} = user} = UserManager.update_user(user, @update_attrs)
+      assert {:ok, user} == Argon2.check_pass(user, "some updated password", hash_key: :password)
+      assert user.email == "some updated username"
     end
 
     test "update_user/2 with invalid data returns error changeset" do

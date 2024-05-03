@@ -22,6 +22,10 @@ config :rentaj, RentajWeb.Endpoint,
   pubsub_server: Rentaj.PubSub,
   live_view: [signing_salt: "V2wLqnrB"]
 
+config :rentaj, Rentaj.Guardian,
+  issuer: "rentaj",
+  secret_key: "36Z7eppd0IVGfa8qNi/yhTWRQfauYrHfkMRcg25Frfch4XxdAcjB7fsCKZ7FeTz7"
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

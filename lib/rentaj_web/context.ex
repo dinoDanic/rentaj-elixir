@@ -2,10 +2,8 @@ defmodule RentajWeb.Context do
   @behaviour Plug
 
   import Plug.Conn
-  import Ecto.Query, only: [where: 2]
 
-  alias Rentaj.Repo
-  alias Rentaj.Accounts.User
+  alias Rentaj.Accounts
 
   def init(opts), do: opts
 
@@ -19,20 +17,20 @@ defmodule RentajWeb.Context do
   """
   def build_context(conn) do
     with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
-         {:ok, current_user} <- authorize(token) do
+         {:ok, claims} <- Rentaj.Guardian.decode_and_verify(token),
+         {:ok, current_user} <- resource_from_claims(claims) do
       %{current_user: current_user}
     else
       _ -> %{}
     end
   end
 
-  defp authorize(token) do
-    User
-    |> where(token: ^token)
-    |> Repo.one()
-    |> case do
-      nil -> {:error, "invalid authorization token"}
-      user -> {:ok, user}
+  defp resource_from_claims(%{"sub" => id}) do
+    user = Accounts.get_user!(id)
+
+    case user do
+      nil -> {:error, "User not found"}
+      _ -> {:ok, user}
     end
   end
 end

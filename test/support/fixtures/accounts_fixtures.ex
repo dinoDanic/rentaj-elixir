@@ -12,7 +12,7 @@ defmodule Rentaj.AccountsFixtures do
       attrs
       |> Enum.into(%{
         email: "some email",
-        password_hash: "some password_hash",
+        password: "some password",
         token: "some token"
       })
       |> Rentaj.Accounts.create_user()
