@@ -1,17 +1,14 @@
 defmodule RentajWeb.Resolvers.AccountResolver do
   alias Rentaj.Accounts
 
-  def create_user(_root, args, _info) do
+  def create_user(_root, %{input: args}, _info) do
     case Accounts.create_user(args) do
       {:ok, user} -> {:ok, user}
       _error -> {:error, "could not create user"}
     end
   end
 
-  def create_session(_root, %{password: password, email: email}, _info) do
-    IO.inspect(email)
-    IO.inspect(password)
-
+  def create_session(_root, %{input: %{password: password, email: email}}, _info) do
     case Accounts.authenticate_user(email, password) do
       {:ok, user} ->
         case Rentaj.Guardian.encode_and_sign(user) do

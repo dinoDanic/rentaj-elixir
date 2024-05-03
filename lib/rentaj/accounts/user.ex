@@ -5,7 +5,6 @@ defmodule Rentaj.Accounts.User do
   alias Argon2
 
   schema "users" do
-    field :token, :string
     field :email, :string
     field :password, :string
 
@@ -15,8 +14,8 @@ defmodule Rentaj.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :password, :token])
-    |> validate_required([:email, :password, :token])
+    |> cast(attrs, [:email, :password])
+    |> validate_required([:email, :password])
     |> put_password_hash()
   end
 
