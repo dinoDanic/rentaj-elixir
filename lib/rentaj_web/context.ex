@@ -26,7 +26,7 @@ defmodule RentajWeb.Context do
   end
 
   defp resource_from_claims(%{"sub" => id}) do
-    user = Accounts.get_user!(id)
+    user = Accounts.get_user(id)
 
     case user do
       nil -> {:error, "User not found"}
