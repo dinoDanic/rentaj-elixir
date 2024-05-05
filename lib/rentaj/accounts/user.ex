@@ -13,11 +13,15 @@ defmodule Rentaj.Accounts.User do
     timestamps(type: :utc_datetime)
   end
 
+  @email_regex ~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,12}$/
+
   @doc false
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:email, :password])
     |> validate_required([:email, :password])
+    |> validate_format(:email, @email_regex, message: "invalid_email_format")
+    |> unique_constraint(:email)
     |> put_password_hash()
   end
 

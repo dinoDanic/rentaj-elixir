@@ -3,8 +3,11 @@ defmodule RentajWeb.Resolvers.AccountResolver do
 
   def create_user(_root, %{input: args}, _info) do
     case Accounts.create_user(args) do
-      {:ok, user} -> {:ok, user}
-      _error -> {:error, "could not create user"}
+      {:ok, user} ->
+        {:ok, user}
+
+      _error ->
+        {:error, "could not create user"}
     end
   end
 

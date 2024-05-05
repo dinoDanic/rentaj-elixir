@@ -2,7 +2,7 @@ alias Rentaj.Categories.Category
 alias Rentaj.Accounts.User
 alias Rentaj.Repo
 
-%User{email: "user2@user.com", password: "$argon2id$v=19$m=65536,t=3,p=4$hG6QCCsqJrdfZzLKZ29JRA$XaFIuTrNFBW+odX8ttYHj+JRTk5qNuiUCuIzZWY/woY"} |> Repo.insert!()
+%User{email: "user1@user.com", password: "$argon2id$v=19$m=65536,t=3,p=4$JE308AuMGQpIHp5jcg5s1g$EeZvP3HZqv8YsrIhRwnzrxydee+0mP0rXuMKVOJLIkc"} |> Repo.insert!()
 
 %Category{name: "category 1", category_id: nil} |> Repo.insert!()
 %Category{name: "category 1-1", category_id: 1} |> Repo.insert!()
