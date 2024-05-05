@@ -1,11 +1,13 @@
 defmodule RentajWeb.Schema do
   use Absinthe.Schema
 
+  alias RentajWeb.Resolvers.ItemResolver
   alias RentajWeb.Resolvers.CategoryResolver
   alias RentajWeb.Resolvers.AccountResolver
 
   import_types(RentajWeb.Types.Accounts)
   import_types(RentajWeb.Types.Categories)
+  import_types(RentajWeb.Types.Items)
 
   @unauthorized_queries [:create_session, :create_user, :categories]
 
@@ -32,6 +34,12 @@ defmodule RentajWeb.Schema do
     field :create_session, :session do
       arg(:input, :create_session_input)
       resolve(&AccountResolver.create_session/3)
+    end
+
+    @desc "Create a item"
+    field :create_item, :item do
+      arg(:input, :create_item_input)
+      resolve(&ItemResolver.create_item/3)
     end
   end
 

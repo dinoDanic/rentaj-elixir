@@ -8,6 +8,8 @@ defmodule Rentaj.Accounts.User do
     field :email, :string
     field :password, :string
 
+    has_many :items, Rentaj.Items.Item
+
     timestamps(type: :utc_datetime)
   end
 
