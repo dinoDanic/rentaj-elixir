@@ -11,7 +11,13 @@ defmodule RentajWeb.Schema do
   import_types(RentajWeb.Types.Items)
   import_types(RentajWeb.Types.Search)
 
-  @unauthorized_queries [:create_session, :create_user, :categories]
+  @unauthorized_queries [
+    :create_session,
+    :create_user,
+    :categories,
+    :search_categories,
+    :search_items
+  ]
 
   query do
     @desc "Get me"
@@ -28,6 +34,12 @@ defmodule RentajWeb.Schema do
     field :search_items, list_of(:item) do
       arg(:input, :search_input)
       resolve(&SearchResolver.search_items/3)
+    end
+
+    @desc "search categories"
+    field :search_categories, list_of(:category) do
+      arg(:input, :search_input)
+      resolve(&SearchResolver.search_categories/3)
     end
   end
 

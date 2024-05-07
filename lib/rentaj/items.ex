@@ -8,7 +8,7 @@ defmodule Rentaj.Items do
 
   alias Rentaj.Items.Item
 
-  def search_item(query) do
+  def search_items(query) do
     query = "%" <> String.downcase(query) <> "%"
     query = Repo.all(from i in Item, where: ilike(i.name, ^query))
     query

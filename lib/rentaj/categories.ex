@@ -8,6 +8,12 @@ defmodule Rentaj.Categories do
 
   alias Rentaj.Categories.Category
 
+  def search_categories(query) do
+    query = "%" <> String.downcase(query) <> "%"
+    query = Repo.all(from i in Category, where: ilike(i.name, ^query))
+    query
+  end
+
   @doc """
   Returns the list of categories.
 
