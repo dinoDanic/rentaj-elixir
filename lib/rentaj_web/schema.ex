@@ -21,7 +21,7 @@ defmodule RentajWeb.Schema do
 
   query do
     @desc "Get me"
-    field :me, :user do
+    field :me, :me do
       resolve(&AccountResolver.get_me/3)
     end
 

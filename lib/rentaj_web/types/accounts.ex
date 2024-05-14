@@ -1,6 +1,21 @@
 defmodule RentajWeb.Types.Accounts do
   use Absinthe.Schema.Notation
 
+  import_types(RentajWeb.Types.Orders)
+
+  alias RentajWeb.Resolvers.AccountResolver
+  alias RentajWeb.Resolvers.OrderResolver
+
+  object :me do
+    field :account, :user do
+      resolve(&AccountResolver.get_me/3)
+    end
+
+    field :orders, list_of(:order) do
+      resolve(&OrderResolver.get_user_orders/3)
+    end
+  end
+
   object :user do
     field :id, non_null(:id)
     field :email, non_null(:string)

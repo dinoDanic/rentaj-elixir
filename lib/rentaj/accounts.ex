@@ -26,6 +26,16 @@ defmodule Rentaj.Accounts do
     end
   end
 
+  def list_orders(user_id) do
+    user = get_user(user_id)
+    preload = user |> Repo.preload(:orders) |> Map.get(:orders)
+
+    case preload do
+      nil -> {:ok, nil}
+      orders -> {:ok, orders}
+    end
+  end
+
   @doc """
   Returns the list of users.
 
