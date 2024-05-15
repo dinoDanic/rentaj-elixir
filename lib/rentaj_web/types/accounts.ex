@@ -1,8 +1,6 @@
 defmodule RentajWeb.Types.Accounts do
   use Absinthe.Schema.Notation
 
-  import_types(RentajWeb.Types.Orders)
-
   alias RentajWeb.Resolvers.AccountResolver
   alias RentajWeb.Resolvers.OrderResolver
 

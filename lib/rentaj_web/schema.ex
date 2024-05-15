@@ -5,11 +5,13 @@ defmodule RentajWeb.Schema do
   alias RentajWeb.Resolvers.ItemResolver
   alias RentajWeb.Resolvers.CategoryResolver
   alias RentajWeb.Resolvers.AccountResolver
+  alias RentajWeb.Resolvers.OrderResolver
 
   import_types(RentajWeb.Types.Accounts)
   import_types(RentajWeb.Types.Categories)
   import_types(RentajWeb.Types.Items)
   import_types(RentajWeb.Types.Search)
+  import_types(RentajWeb.Types.Orders)
 
   @unauthorized_queries [
     :create_session,
@@ -60,6 +62,12 @@ defmodule RentajWeb.Schema do
     field :create_item, :item do
       arg(:input, :create_item_input)
       resolve(&ItemResolver.create_item/3)
+    end
+
+    @desc "Create a order"
+    field :create_order, :order do
+      arg(:input, :create_order_input)
+      resolve(&OrderResolver.create_order/3)
     end
   end
 

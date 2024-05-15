@@ -49,7 +49,7 @@ defmodule Rentaj.Orders do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_order(attrs \\ %{}) do
+  def create_order(attrs) do
     %Order{}
     |> Order.changeset(attrs)
     |> Repo.insert()

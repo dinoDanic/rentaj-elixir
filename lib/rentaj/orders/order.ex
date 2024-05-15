@@ -26,6 +26,7 @@ defmodule Rentaj.Orders.Order do
       :pick_up,
       :renter_id,
       :customer_id,
+      :item_id,
       :status
     ])
     |> validate_required([
@@ -34,11 +35,12 @@ defmodule Rentaj.Orders.Order do
       :delivery,
       :pick_up,
       :renter_id,
-      :counter_id,
+      :customer_id,
+      :item_id,
       :status
     ])
     |> validate_dates
-    |> validate_inclusion(:status, ["draft", "waiting_for_renter", "declined", "completed"])
+    # |> validate_inclusion(:status, ["draft", "waiting_for_renter", "declined", "completed"])
   end
 
   defp validate_dates(changeset) do

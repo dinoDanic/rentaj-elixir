@@ -16,4 +16,14 @@ defmodule RentajWeb.Types.Orders do
     field :pick_up, non_null(:boolean)
     field :status, non_null(:order_status)
   end
+
+  input_object :create_order_input do
+    field :item_id, non_null(:id)
+    field :renter_id, non_null(:id)
+    field :start_date, non_null(:string)
+    field :end_date, non_null(:string)
+    field :delivery, non_null(:boolean)
+    field :pick_up, non_null(:boolean)
+    field :status, non_null(:order_status)
+  end
 end
