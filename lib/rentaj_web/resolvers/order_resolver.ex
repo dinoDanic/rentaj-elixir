@@ -4,7 +4,6 @@ defmodule RentajWeb.Resolvers.OrderResolver do
   def get_user_orders(_, _, %{context: %{current_user: current_user}}) do
     case Accounts.list_orders(current_user.id) do
       {:ok, orders} -> {:ok, orders}
-      _ -> {:error, "no orders"}
     end
   end
 end
