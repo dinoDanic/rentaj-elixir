@@ -10,8 +10,8 @@ defmodule Rentaj.Orders.Order do
     field :status, Rentaj.Orders.StatusType
 
     belongs_to :item, Rentaj.Items.Item
-    belongs_to :renter, Rentaj.Users.User, foreign_key: :renter_id
-    belongs_to :customer, Rentaj.Users.User, foreign_key: :customer_id
+    belongs_to :renter, Rentaj.Accounts.User, foreign_key: :renter_id
+    belongs_to :customer, Rentaj.Accounts.User, foreign_key: :customer_id
 
     timestamps(type: :utc_datetime)
   end

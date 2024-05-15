@@ -9,6 +9,7 @@ defmodule RentajWeb.Types.Orders do
   end
 
   object :order do
+    field :id, non_null(:id)
     field :start_date, non_null(:string)
     field :end_date, non_null(:string)
     field :delivery, non_null(:boolean)
