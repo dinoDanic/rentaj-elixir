@@ -40,7 +40,7 @@ defmodule Rentaj.Orders.Order do
       :status
     ])
     |> validate_dates
-    # |> validate_inclusion(:status, ["draft", "waiting_for_renter", "declined", "completed"])
+    |> validate_inclusion(:status, [:draft, :waiting_for_renter, :declined, :completed])
   end
 
   defp validate_dates(changeset) do
