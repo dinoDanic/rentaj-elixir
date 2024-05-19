@@ -32,4 +32,11 @@ defmodule RentajWeb.Resolvers.CategoryResolver do
       category -> {:ok, category}
     end
   end
+
+  def get_parent_categories(_root, _args, _info) do
+    case Categories.list_parent_categories() do
+      [] -> {:error, "no categories"}
+      categories -> {:ok, categories}
+    end
+  end
 end

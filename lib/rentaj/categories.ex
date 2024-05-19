@@ -14,6 +14,10 @@ defmodule Rentaj.Categories do
     query
   end
 
+  def list_parent_categories do
+    Repo.all(from c in Category, where: is_nil(c.category_id))
+  end
+
   @doc """
   Returns the list of categories.
 

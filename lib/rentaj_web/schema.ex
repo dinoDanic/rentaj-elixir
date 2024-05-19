@@ -17,6 +17,7 @@ defmodule RentajWeb.Schema do
     :create_session,
     :create_user,
     :categories,
+    :parent_categories,
     :search_categories,
     :search_items
   ]
@@ -30,6 +31,11 @@ defmodule RentajWeb.Schema do
     @desc "Get Categories"
     field :categories, list_of(:category) do
       resolve(&CategoryResolver.get_categories/3)
+    end
+
+    @desc "Get Parent Categories"
+    field :parent_categories, list_of(:category) do
+      resolve(&CategoryResolver.get_parent_categories/3)
     end
 
     @desc "search items"

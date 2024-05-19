@@ -12,6 +12,8 @@ defmodule RentajWeb.Router do
   scope "/api" do
     pipe_through :graphql
 
+    forward("/graphql", Absinthe.Plug, schema: RentajWeb.Schema)
+
     forward "/graphiql", Absinthe.Plug.GraphiQL,
       schema: RentajWeb.Schema,
       interface: :playground,
