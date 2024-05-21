@@ -27,18 +27,7 @@ defmodule Rentaj.Factory do
     }
   end
 
-  # def random_datetime_between(start_date, end_date) do
-  #   {start_date_ms, _} = DateTime.to_erl(start_date)
-  #   {end_date_ms, _} = DateTime.to_erl(end_date)
-  #
-  #   random_ms = Enum.random(start_date_ms..end_date_ms)
-  #   DateTime.from_unix!(div(random_ms, 1000))
-  # end
-
   def order_factory do
-    # start_date = Faker.Date.backward(365)
-    # end_date = Faker.Date.forward(365)
-
     %Order{
       item_id: Enum.random(1..20000),
       renter_id: Enum.random(1..20000),
