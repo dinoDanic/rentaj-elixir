@@ -2,10 +2,6 @@ defmodule Rentaj.Repo.Migrations.CreateOrders do
   use Ecto.Migration
 
   def change do
-    execute """
-    CREATE TYPE order_status AS ENUM ('draft', 'waiting_for_renter', 'declined', 'completed');
-    """
-
     create table(:orders) do
       add :item_id, references(:items, on_delete: :nothing), null: false
       add :renter_id, references(:users, on_delete: :nothing), null: false

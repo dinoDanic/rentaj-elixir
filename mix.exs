@@ -46,7 +46,9 @@ defmodule Rentaj.MixProject do
       {:absinthe, "~> 1.7"},
       {:absinthe_plug, "~> 1.5"},
       {:guardian, "~> 2.3"},
-      {:argon2_elixir, "~> 4.0"}
+      {:argon2_elixir, "~> 4.0"},
+      {:ex_machina, "~> 2.7"},
+      {:faker, "~> 0.18.0"}
     ]
   end
 
