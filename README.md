@@ -1,7 +1,10 @@
 # Rentaj
 
 ## Docker
-#### run from linux machine => connect to server ssh dinosur.app
+
+1. git push
+2. connect to ssh dinosur.app
+3. git pull
 
 ```docker
 

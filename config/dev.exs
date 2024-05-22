@@ -3,9 +3,14 @@ import Config
 # Configure your database
 config :rentaj, Rentaj.Repo,
   username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  database: "rentaj_dev",
+  password: "Ruda,actv1!",
+  hostname: "dinosur.app",
+  database: "rentaj-dev",
+  #
+  # username: "postgres",
+  # password: "postgres",
+  # hostname: "localhost",
+  # database: "rentaj_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
