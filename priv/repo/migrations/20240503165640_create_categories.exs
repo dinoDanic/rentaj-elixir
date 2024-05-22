@@ -5,6 +5,7 @@ defmodule Rentaj.Repo.Migrations.CreateCategories do
     create table(:categories) do
       add :name, :string
       add :category_id, references(:categories, on_delete: :nothing)
+      add :image_url, :string
 
       timestamps(type: :utc_datetime)
     end
