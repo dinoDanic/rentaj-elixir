@@ -17,7 +17,7 @@ defmodule Rentaj.Factory do
     %Item{
       name: Faker.Commerce.product_name(),
       category_id: Enum.random(1..12),
-      user_id: Enum.random(1..20000),
+      user_id: Enum.random(1..20),
       description: Faker.Lorem.paragraph() |> String.slice(0, 255),
       price_per_day: Faker.Commerce.price(),
       pick_up: Enum.random([true, false]),
@@ -30,8 +30,8 @@ defmodule Rentaj.Factory do
   def order_factory do
     %Order{
       item_id: Enum.random(1..20000),
-      renter_id: Enum.random(1..20000),
-      customer_id: 2,
+      renter_id: Enum.random(1..20),
+      customer_id: Enum.random(1..20),
       start_date: Faker.DateTime.backward(4),
       end_date: Faker.DateTime.forward(4),
       delivery: Enum.random([true, false]),
