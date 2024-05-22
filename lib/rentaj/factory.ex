@@ -16,7 +16,7 @@ defmodule Rentaj.Factory do
   def item_factory do
     %Item{
       name: Faker.Commerce.product_name(),
-      category_id: Enum.random(1..12),
+      category_id: Enum.random(1..60),
       user_id: Enum.random(1..20),
       description: Faker.Lorem.paragraph() |> String.slice(0, 255),
       price_per_day: Faker.Commerce.price(),
