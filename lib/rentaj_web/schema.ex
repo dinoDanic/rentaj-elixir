@@ -28,14 +28,9 @@ defmodule RentajWeb.Schema do
   ]
 
   query do
-    connection field :testing, node_type: :item do
-      resolve(fn
-        pagination_args, %{source: business} ->
-          Rentaj.Items.Item
-          # |> where(business_id: ^business.id)
-          # |> order_by(:inserted_at)
-          |> Connection.from_query(&Rentaj.Repo.all/1, pagination_args)
-      end)
+    connection field :search_items, node_type: :item do
+      arg(:input, :search_input)
+      resolve(&SearchResolver.search_items/3)
     end
 
     @desc "Get me"
@@ -54,9 +49,9 @@ defmodule RentajWeb.Schema do
     end
 
     @desc "search items"
-    field :search_items, list_of(:item) do
+    field :search_items_bk, list_of(:item) do
       arg(:input, :search_input)
-      resolve(&SearchResolver.search_items/3)
+      resolve(&SearchResolver.search_items_bk/3)
     end
 
     @desc "search categories"
