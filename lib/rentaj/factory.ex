@@ -1,6 +1,4 @@
 defmodule Rentaj.Factory do
-  use ExMachina.Ecto, repo: Rentaj.Repo
-
   alias Rentaj.Accounts.User
   alias Rentaj.Items.Item
   alias Rentaj.Orders.Order

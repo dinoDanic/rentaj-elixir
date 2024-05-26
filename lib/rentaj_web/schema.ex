@@ -1,7 +1,6 @@
 defmodule RentajWeb.Schema do
   use Absinthe.Schema
   use Absinthe.Relay.Schema, :modern
-  alias Absinthe.Relay.Connection
 
   alias RentajWeb.Resolvers.SearchResolver
   alias RentajWeb.Resolvers.ItemResolver
