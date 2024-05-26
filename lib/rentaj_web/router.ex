@@ -16,7 +16,7 @@ defmodule RentajWeb.Router do
 
     forward "/graphiql", Absinthe.Plug.GraphiQL,
       schema: RentajWeb.Schema,
-      interface: :playground,
+      interface: :simple,
       context: %{pubsub: RentajWeb.Endpoint}
   end
 end

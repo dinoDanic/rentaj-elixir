@@ -1,5 +1,7 @@
 defmodule RentajWeb.Types.Items do
   use Absinthe.Schema.Notation
+  # use Absinthe.Relay.Schema.Notation, :modern
+  # use Absinthe.Relay.Schema.Notation, :classic
 
   object :item do
     field :name, non_null(:string)

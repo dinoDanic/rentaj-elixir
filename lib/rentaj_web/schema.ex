@@ -1,5 +1,7 @@
 defmodule RentajWeb.Schema do
   use Absinthe.Schema
+  use Absinthe.Relay.Schema, :modern
+  alias Absinthe.Relay.Connection
 
   alias RentajWeb.Resolvers.SearchResolver
   alias RentajWeb.Resolvers.ItemResolver
@@ -13,16 +15,29 @@ defmodule RentajWeb.Schema do
   import_types(RentajWeb.Types.Search)
   import_types(RentajWeb.Types.Orders)
 
+  connection(node_type: :item)
+
   @unauthorized_queries [
     :create_session,
     :create_user,
     :categories,
     :parent_categories,
     :search_categories,
-    :search_items
+    :search_items,
+    :testing
   ]
 
   query do
+    connection field :testing, node_type: :item do
+      resolve(fn
+        pagination_args, %{source: business} ->
+          Rentaj.Items.Item
+          # |> where(business_id: ^business.id)
+          # |> order_by(:inserted_at)
+          |> Connection.from_query(&Rentaj.Repo.all/1, pagination_args)
+      end)
+    end
+
     @desc "Get me"
     field :me, :me do
       resolve(&AccountResolver.get_me/3)
