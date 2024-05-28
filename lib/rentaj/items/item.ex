@@ -13,6 +13,7 @@ defmodule Rentaj.Items.Item do
 
     belongs_to :category, Rentaj.Categories.Category
     belongs_to :user, Rentaj.Accounts.User
+    belongs_to :location, Rentaj.Locations.Location
 
     timestamps(type: :utc_datetime)
   end

@@ -1,6 +1,9 @@
 defmodule Rentaj.Factory do
+  use ExMachina.Ecto, repo: Rentaj.Repo
+
   alias Rentaj.Accounts.User
   alias Rentaj.Items.Item
+  alias Rentaj.Locations.Location
   alias Rentaj.Orders.Order
 
   def user_factory do
@@ -11,11 +14,20 @@ defmodule Rentaj.Factory do
     }
   end
 
+  def location_factory do
+    %Location{
+      address: Faker.Address.street_address(),
+      city: Faker.Address.city(),
+      postal_code: Faker.Address.zip_code()
+    }
+  end
+
   def item_factory do
     %Item{
       name: Faker.Commerce.product_name(),
       category_id: Enum.random(1..60),
       user_id: Enum.random(1..20),
+      location_id: Enum.random(1..20000),
       description: Faker.Lorem.paragraph() |> String.slice(0, 255),
       price_per_day: Faker.Commerce.price(),
       pick_up: Enum.random([true, false]),
