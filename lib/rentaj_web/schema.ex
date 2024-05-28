@@ -14,6 +14,7 @@ defmodule RentajWeb.Schema do
   import_types(RentajWeb.Types.Search)
   import_types(RentajWeb.Types.Orders)
   import_types(RentajWeb.Types.Locations)
+  import_types(RentajWeb.Types.Companies)
 
   connection(node_type: :item)
 
