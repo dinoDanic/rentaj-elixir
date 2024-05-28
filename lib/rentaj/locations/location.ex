@@ -8,6 +8,7 @@ defmodule Rentaj.Locations.Location do
     field :postal_code, :string
 
     has_one :item, Rentaj.Items.Item
+    has_one :company, Rentaj.Companies.Company
 
     timestamps(type: :utc_datetime)
   end

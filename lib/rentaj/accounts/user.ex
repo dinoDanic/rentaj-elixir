@@ -11,6 +11,7 @@ defmodule Rentaj.Accounts.User do
     has_many :items, Rentaj.Items.Item
     has_many :orders, Rentaj.Orders.Order, foreign_key: :customer_id
     has_many :rented_items, Rentaj.Orders.Order, foreign_key: :renter_id
+    belongs_to :company, Rentaj.Companies.Company
 
     timestamps(type: :utc_datetime)
   end

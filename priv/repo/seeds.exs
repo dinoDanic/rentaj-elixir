@@ -1,7 +1,8 @@
 seed_files = [
+  "priv/repo/seeds/seed_locations.ex",
+  "priv/repo/seeds/seed_companies.ex",
   "priv/repo/seeds/seed_users.ex",
   "priv/repo/seeds/seed_categories.ex",
-  "priv/repo/seeds/seed_locations.ex",
   "priv/repo/seeds/seed_items.ex",
   "priv/repo/seeds/seed_orders.ex"
 ]

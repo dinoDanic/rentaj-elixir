@@ -1,16 +1,27 @@
 defmodule Rentaj.Factory do
   use ExMachina.Ecto, repo: Rentaj.Repo
 
+  alias Faker.Company
   alias Rentaj.Accounts.User
   alias Rentaj.Items.Item
   alias Rentaj.Locations.Location
+  alias Rentaj.Companies.Company
   alias Rentaj.Orders.Order
+
+  def company_factory do
+    %Company{
+      name: Faker.Company.name(),
+      oib: Faker.UUID.v4(),
+      location_id: Enum.random(1..20000)
+    }
+  end
 
   def user_factory do
     %User{
       email: Faker.Internet.email(),
       password:
-        "$argon2id$v=19$m=65536,t=3,p=4$d9+Cxm0nLSg73bZEnzou6A$cuyIpRRISWLevX75hRDoE/eWrlp6XACaopZV77th5L4"
+        "$argon2id$v=19$m=65536,t=3,p=4$d9+Cxm0nLSg73bZEnzou6A$cuyIpRRISWLevX75hRDoE/eWrlp6XACaopZV77th5L4",
+      company_id: maybe_assign_company_id()
     }
   end
 
@@ -48,5 +59,20 @@ defmodule Rentaj.Factory do
       pick_up: Enum.random([true, false]),
       status: Enum.random([:draft, :waiting_for_renter, :declined, :completed])
     }
+  end
+
+  defp maybe_assign_company_id do
+    if :rand.uniform() <= 0.2 do
+      get_unique_company_id()
+    else
+      nil
+    end
+  end
+
+  defp get_unique_company_id do
+    # Generate a unique list of IDs
+    ids = 1..20000 |> Enum.to_list() |> Enum.shuffle()
+    # Use a Stream to ensure uniqueness
+    Stream.cycle(ids) |> Enum.take(1) |> hd()
   end
 end
