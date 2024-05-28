@@ -8,6 +8,7 @@ defmodule Rentaj.Categories.Category do
 
     belongs_to :category, Rentaj.Categories.Category
     has_many :categories, Rentaj.Categories.Category
+    has_many :items, Rentaj.Items.Item
 
     timestamps(type: :utc_datetime)
   end

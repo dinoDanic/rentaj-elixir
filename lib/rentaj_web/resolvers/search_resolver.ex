@@ -23,16 +23,6 @@ defmodule RentajWeb.Resolvers.SearchResolver do
     Connection.from_query(query, &Repo.all/1, args)
   end
 
-  # def search_items(_, args, _) do
-  #   %{input: %{query: query}} = args
-  #
-  #   query =
-  #     from i in Item,
-  #       where: ilike(i.name, ^"%#{query}%")
-  #
-  #   Connection.from_query(query, &Repo.all/1, args)
-  # end
-
   def search_items_bk(_, %{input: %{query: query}}, _) do
     case Items.search_items(query) do
       [] -> {:ok, []}

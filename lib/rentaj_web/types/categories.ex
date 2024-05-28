@@ -7,6 +7,14 @@ defmodule RentajWeb.Types.Categories do
     field :id, non_null(:id)
     field :image_url, :string
 
+    field :items, list_of(:item) do
+      resolve(&CategoryResolver.preload_items/3)
+    end
+
+    field :items_count, :integer do
+      resolve(&CategoryResolver.items_count/3)
+    end
+
     field :child_categories, list_of(:category) do
       resolve(&CategoryResolver.preload_child_categories/3)
     end
