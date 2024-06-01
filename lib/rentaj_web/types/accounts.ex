@@ -1,6 +1,7 @@
 defmodule RentajWeb.Types.Accounts do
   use Absinthe.Schema.Notation
 
+  alias RentajWeb.Resolvers.ItemResolver
   alias RentajWeb.Resolvers.CompanyResolver
   alias RentajWeb.Resolvers.AccountResolver
   alias RentajWeb.Resolvers.OrderResolver
@@ -16,6 +17,11 @@ defmodule RentajWeb.Types.Accounts do
 
     field :company, :company do
       resolve(&CompanyResolver.preload_company/3)
+    end
+
+    field :items, list_of(:item) do
+      arg(:input, :filter_items)
+      resolve(&ItemResolver.preload_items/3)
     end
   end
 

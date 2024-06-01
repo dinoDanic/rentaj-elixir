@@ -37,14 +37,14 @@ defmodule Rentaj.Factory do
     %Item{
       name: Faker.Commerce.product_name(),
       category_id: Enum.random(1..60),
-      user_id: Enum.random(1..20),
+      user_id: Enum.random(1..1000),
       location_id: Enum.random(1..20000),
       description: Faker.Lorem.paragraph() |> String.slice(0, 255),
       price_per_day: Faker.Commerce.price(),
       pick_up: Enum.random([true, false]),
       delivery: Enum.random([true, false]),
       capara: if(Enum.random([true, false]), do: Faker.Commerce.price(), else: nil),
-      active: true
+      active: Enum.random([true, false])
     }
   end
 
