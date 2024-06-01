@@ -30,8 +30,9 @@ defmodule Rentaj.Items.Item do
       :pick_up,
       :capara,
       :description,
-      :active
+      :active,
+      :location_id
     ])
-    |> validate_required([:name, :category_id, :user_id, :price_per_day, :active])
+    |> validate_required([:name, :category_id, :user_id, :price_per_day, :location_id])
   end
 end

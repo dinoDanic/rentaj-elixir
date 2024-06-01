@@ -12,6 +12,7 @@ defmodule RentajWeb.Types.Items do
     field :id, non_null(:id)
     field :name, non_null(:string)
     field :price_per_day, non_null(:decimal)
+    field :capara, non_null(:decimal)
     field :delivery, non_null(:boolean)
     field :pick_up, non_null(:boolean)
     field :description, :string
@@ -23,6 +24,12 @@ defmodule RentajWeb.Types.Items do
 
   input_object :create_item_input do
     field :name, non_null(:string)
-    field(:category_id, non_null(:string))
+    field :category_id, non_null(:string)
+    field :description, :string
+    field :price_per_day, non_null(:decimal)
+    field :capara, non_null(:decimal)
+    field :delivery, non_null(:boolean)
+    field :pick_up, non_null(:boolean)
+    field :location_id, non_null(:string)
   end
 end

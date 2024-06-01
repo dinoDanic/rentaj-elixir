@@ -7,4 +7,10 @@ defmodule RentajWeb.Types.Locations do
     field :city, non_null(:string)
     field :postal_code, non_null(:integer)
   end
+
+  input_object :create_location_input do
+    field :address, non_null(:string)
+    field :city, non_null(:string)
+    field :postal_code, non_null(:integer)
+  end
 end

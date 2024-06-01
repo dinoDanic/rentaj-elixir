@@ -10,7 +10,8 @@ defmodule RentajWeb.Resolvers.ItemResolver do
       {:ok, item} ->
         {:ok, item}
 
-      _ ->
+      {:error, err} ->
+        IO.inspect(err)
         {:error, "error could not create items"}
     end
   end
