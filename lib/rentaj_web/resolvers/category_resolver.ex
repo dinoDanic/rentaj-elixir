@@ -3,6 +3,13 @@ defmodule RentajWeb.Resolvers.CategoryResolver do
   alias Rentaj.Repo
   import Ecto.Query
 
+  def get_category_by_id(_root, %{input: %{id: id}}, _info) do
+    case Categories.get_category!(id) do
+      nil -> {:error, "no cateogry with that id"}
+      category -> {:ok, category}
+    end
+  end
+
   def get_categories(_root, _args, _info) do
     case Categories.list_categories() do
       [] -> {:error, "no categories"}

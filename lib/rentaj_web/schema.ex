@@ -60,6 +60,12 @@ defmodule RentajWeb.Schema do
       arg(:input, :search_input)
       resolve(&SearchResolver.search_categories/3)
     end
+
+    @desc "get category by id"
+    field :category, :category do
+      arg(:input, :category_input)
+      resolve(&CategoryResolver.get_category_by_id/3)
+    end
   end
 
   mutation do
