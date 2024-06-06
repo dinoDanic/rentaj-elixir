@@ -24,7 +24,6 @@ defmodule RentajWeb.Resolvers.ItemResolver do
   end
 
   def preload_items(parent, args, _) do
-    # preload_query = from i in Items.Item, where: i.active == ^active
     base_query = from(i in Items.Item)
 
     query =
@@ -40,6 +39,7 @@ defmodule RentajWeb.Resolvers.ItemResolver do
       parent
       |> Repo.preload(items: query)
       |> Map.get(:items)
+      |> Enum.sort_by(& &1.updated_at, &>=/2)
 
     case items do
       nil -> {:ok, nil}

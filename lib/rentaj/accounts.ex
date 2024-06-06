@@ -28,7 +28,11 @@ defmodule Rentaj.Accounts do
 
   def list_orders(user_id) do
     user = get_user(user_id)
-    preload = user |> Repo.preload(:orders) |> Map.get(:orders)
+
+    preload =
+      user
+      |> Repo.preload(:orders)
+      |> Map.get(:orders)
 
     case preload do
       nil -> {:ok, nil}
