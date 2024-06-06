@@ -62,8 +62,8 @@ defmodule RentajWeb.Schema do
     end
 
     @desc "get category by id"
-    field :category, :category do
-      arg(:input, :category_input)
+    field :category_by_id, :category do
+      arg(:input, :category_by_id_input)
       resolve(&CategoryResolver.get_category_by_id/3)
     end
   end

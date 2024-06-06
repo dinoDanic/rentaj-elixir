@@ -2,7 +2,7 @@ defmodule RentajWeb.Types.Categories do
   alias RentajWeb.Resolvers.CategoryResolver
   use Absinthe.Schema.Notation
 
-  input_object :category_input do
+  input_object :category_by_id_input do
     field :id, :id
   end
 
