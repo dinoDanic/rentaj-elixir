@@ -1,4 +1,5 @@
 defmodule RentajWeb.Types.Items do
+  alias RentajWeb.Resolvers.AccountResolver
   alias RentajWeb.Resolvers.LocationResolver
   use Absinthe.Schema.Notation
 
@@ -10,12 +11,19 @@ defmodule RentajWeb.Types.Items do
 
   object :item do
     field :id, non_null(:id)
+    field :user_id, non_null(:id)
     field :name, non_null(:string)
     field :price_per_day, non_null(:decimal)
     field :capara, non_null(:decimal)
     field :delivery, non_null(:boolean)
     field :pick_up, non_null(:boolean)
     field :description, :string
+    field :updated_at, :string
+    field :inserted_at, :string
+
+    field :user, non_null(:user) do
+      resolve(&AccountResolver.preload_user/3)
+    end
 
     field :location, non_null(:location) do
       resolve(&LocationResolver.preload_location/3)

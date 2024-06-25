@@ -30,4 +30,16 @@ defmodule RentajWeb.Resolvers.AccountResolver do
   def get_me(_, _, %{context: %{current_user: current_user}}) do
     {:ok, current_user}
   end
+
+  def preload_user(parent, _args, _info) do
+    preload =
+      parent
+      |> Rentaj.Repo.preload(:user)
+      |> Map.get(:user)
+
+    case preload do
+      nil -> {:ok, nil}
+      user -> {:ok, user}
+    end
+  end
 end
