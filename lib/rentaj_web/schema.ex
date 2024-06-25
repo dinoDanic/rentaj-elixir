@@ -66,6 +66,12 @@ defmodule RentajWeb.Schema do
       arg(:input, :category_by_id_input)
       resolve(&CategoryResolver.get_category_by_id/3)
     end
+
+    @desc "get item by id"
+    field :item_by_id, :item do
+      arg(:input, :item_by_id_input)
+      resolve(&ItemResolver.get_item/3)
+    end
   end
 
   mutation do

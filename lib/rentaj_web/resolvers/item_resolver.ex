@@ -46,4 +46,19 @@ defmodule RentajWeb.Resolvers.ItemResolver do
       _ -> {:ok, items}
     end
   end
+
+  def get_item(_, %{input: %{item_id: item_id}}, _) do
+    try do
+      item = Items.get_item!(item_id)
+      {:ok, item}
+    rescue
+      Ecto.NoResultsError ->
+        IO.puts("No item found")
+        {:error, "could not find item"}
+
+      exception ->
+        IO.inspect(exception, label: "Unexpected error")
+        {:error, "something went wrong"}
+    end
+  end
 end
