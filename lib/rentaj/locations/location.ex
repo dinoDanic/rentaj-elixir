@@ -6,6 +6,8 @@ defmodule Rentaj.Locations.Location do
     field :address, :string
     field :city, :string
     field :postal_code, :string
+    field :lat, :string
+    field :long, :string
 
     has_one :item, Rentaj.Items.Item
     has_one :company, Rentaj.Companies.Company
@@ -16,7 +18,7 @@ defmodule Rentaj.Locations.Location do
   @doc false
   def changeset(location, attrs) do
     location
-    |> cast(attrs, [:address, :city, :postal_code, :item_id])
+    |> cast(attrs, [:address, :city, :postal_code, :item_id, :lat, :long])
     |> validate_required([:address, :city, :postal_code, :item_id])
   end
 end

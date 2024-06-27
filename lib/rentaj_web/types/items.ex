@@ -14,7 +14,7 @@ defmodule RentajWeb.Types.Items do
     field :user_id, non_null(:id)
     field :name, non_null(:string)
     field :price_per_day, non_null(:decimal)
-    field :capara, non_null(:decimal)
+    field :capara, :decimal
     field :delivery, non_null(:boolean)
     field :pick_up, non_null(:boolean)
     field :description, :string

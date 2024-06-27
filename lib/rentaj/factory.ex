@@ -29,7 +29,9 @@ defmodule Rentaj.Factory do
     %Location{
       address: Faker.Address.street_address(),
       city: Faker.Address.city(),
-      postal_code: Faker.Address.zip_code()
+      postal_code: Faker.Address.zip_code(),
+      lat: generate_latitude() |> Float.to_string(),
+      long: generate_longitude() |> Float.to_string()
     }
   end
 
@@ -74,5 +76,19 @@ defmodule Rentaj.Factory do
     ids = 1..20000 |> Enum.to_list() |> Enum.shuffle()
     # Use a Stream to ensure uniqueness
     Stream.cycle(ids) |> Enum.take(1) |> hd()
+  end
+
+  defp generate_latitude do
+    # Latitude range between Zagreb and Sveti Ivan Zelina
+    min_lat = 45.8
+    max_lat = 45.95
+    :rand.uniform() * (max_lat - min_lat) + min_lat
+  end
+
+  defp generate_longitude do
+    # Longitude range between Zagreb and Sveti Ivan Zelina
+    min_long = 15.9
+    max_long = 16.3
+    :rand.uniform() * (max_long - min_long) + min_long
   end
 end

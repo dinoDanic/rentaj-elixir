@@ -6,6 +6,8 @@ defmodule Rentaj.Repo.Migrations.CreateLocationsTable do
       add :address, :string, null: false
       add :city, :string, null: false
       add :postal_code, :string, null: false
+      add :lat, :string
+      add :long, :string
 
       timestamps(type: :utc_datetime)
     end
