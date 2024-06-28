@@ -21,7 +21,8 @@ defmodule Rentaj.Factory do
       email: Faker.Internet.email(),
       password:
         "$argon2id$v=19$m=65536,t=3,p=4$d9+Cxm0nLSg73bZEnzou6A$cuyIpRRISWLevX75hRDoE/eWrlp6XACaopZV77th5L4",
-      company_id: maybe_assign_company_id()
+      company_id: maybe_assign_company_id(),
+      contact_number: "+385123345789"
     }
   end
 

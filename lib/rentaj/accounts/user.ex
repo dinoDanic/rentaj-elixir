@@ -7,6 +7,7 @@ defmodule Rentaj.Accounts.User do
   schema "users" do
     field :email, :string
     field :password, :string
+    field :contact_number, :string
 
     has_many :items, Rentaj.Items.Item
     has_many :orders, Rentaj.Orders.Order, foreign_key: :customer_id
@@ -21,8 +22,8 @@ defmodule Rentaj.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :password])
-    |> validate_required([:email, :password])
+    |> cast(attrs, [:email, :password, :contact_number])
+    |> validate_required([:email, :password, :contact_number])
     |> validate_format(:email, @email_regex, message: "invalid_email_format")
     |> unique_constraint(:email)
     |> put_password_hash()

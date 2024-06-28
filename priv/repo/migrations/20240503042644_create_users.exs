@@ -5,6 +5,7 @@ defmodule Rentaj.Repo.Migrations.CreateUsers do
     create table(:users) do
       add :email, :string, null: false
       add :password, :string, null: false
+      add :contact_number, :string, null: false
 
       timestamps(type: :utc_datetime)
     end

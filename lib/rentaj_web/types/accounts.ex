@@ -28,6 +28,7 @@ defmodule RentajWeb.Types.Accounts do
   object :user do
     field :id, non_null(:id)
     field :email, non_null(:string)
+    field :contact_number, non_null(:string)
 
     field :company, :company do
       resolve(&CompanyResolver.preload_company/3)
