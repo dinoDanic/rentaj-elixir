@@ -1,4 +1,5 @@
 defmodule RentajWeb.Types.Items do
+  alias RentajWeb.Resolvers.ItemResolver
   alias RentajWeb.Resolvers.AccountResolver
   alias RentajWeb.Resolvers.LocationResolver
   use Absinthe.Schema.Notation
@@ -28,6 +29,10 @@ defmodule RentajWeb.Types.Items do
     field :location, non_null(:location) do
       resolve(&LocationResolver.preload_location/3)
     end
+
+    field :availability_seven_days, list_of(:item_availability) do
+      resolve(&ItemResolver.get_item_availability_7_days/3)
+    end
   end
 
   input_object :create_item_input do
@@ -43,5 +48,10 @@ defmodule RentajWeb.Types.Items do
 
   input_object :item_by_id_input do
     field :item_id, non_null(:id)
+  end
+
+  object :item_availability do
+    field :date, non_null(:string)
+    field :available, non_null(:boolean)
   end
 end

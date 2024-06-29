@@ -15,6 +15,8 @@ defmodule Rentaj.Items.Item do
     belongs_to :user, Rentaj.Accounts.User
     belongs_to :location, Rentaj.Locations.Location
 
+    has_many :orders, Rentaj.Orders.Order
+
     timestamps(type: :utc_datetime)
   end
 

@@ -61,4 +61,38 @@ defmodule RentajWeb.Resolvers.ItemResolver do
         {:error, "something went wrong"}
     end
   end
+
+  @doc """
+  Gets the availability of an item for the next 7 days.
+
+  The availability is determined based on the item's orders. An item is
+  considered available on a given date if:
+  - There is no order for that date.
+
+  """
+  def get_item_availability_7_days(item, _, _) do
+    item = Repo.preload(item, :orders)
+    today = Date.utc_today()
+
+    next_7_days = Enum.map(0..6, &Date.add(today, &1))
+
+    availability =
+      Enum.map(next_7_days, fn date ->
+        available = is_available?(item.orders, date)
+        %{date: date |> Date.to_string(), available: available}
+      end)
+
+    {:ok, availability}
+  end
+
+  defp is_available?(orders, date) do
+    case Enum.find(orders, fn order -> order_date_matches?(order, date) end) do
+      nil -> true
+      _ -> false
+    end
+  end
+
+  defp order_date_matches?(order, date) do
+    Date.compare(order.start_date, date) != :gt and Date.compare(order.end_date, date) != :lt
+  end
 end
