@@ -73,6 +73,18 @@ defmodule RentajWeb.Resolvers.ItemResolver do
     end
   end
 
+  def preload_cateogry(parent, _args, _info) do
+    preload =
+      parent
+      |> Rentaj.Repo.preload(:category)
+      |> Map.get(:category)
+
+    case preload do
+      nil -> {:ok, nil}
+      category -> {:ok, category}
+    end
+  end
+
   def get_item(_, %{input: %{item_id: item_id}}, _) do
     try do
       item = Items.get_item!(item_id)

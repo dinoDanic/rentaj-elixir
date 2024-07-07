@@ -33,6 +33,10 @@ defmodule RentajWeb.Types.Items do
     field :availability_seven_days, list_of(:item_availability) do
       resolve(&ItemResolver.get_item_availability_7_days/3)
     end
+
+    field :category, :category do
+      resolve(&ItemResolver.preload_cateogry/3)
+    end
   end
 
   input_object :create_item_input do
