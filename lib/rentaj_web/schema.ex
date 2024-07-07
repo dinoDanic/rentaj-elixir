@@ -100,6 +100,12 @@ defmodule RentajWeb.Schema do
       resolve(&ItemResolver.update_item/3)
     end
 
+    @desc "delete a item"
+    field :delete_item, :boolean do
+      arg(:id, :id)
+      resolve(&ItemResolver.delete_item/3)
+    end
+
     @desc "Create a order"
     field :create_order, :order do
       arg(:input, :create_order_input)

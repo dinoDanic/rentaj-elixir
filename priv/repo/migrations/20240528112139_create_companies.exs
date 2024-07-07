@@ -13,7 +13,7 @@ defmodule Rentaj.Repo.Migrations.CreateCompanies do
     create index(:companies, [:location_id])
 
     alter table(:users) do
-      add :company_id, references(:companies, on_delete: :nothing), null: true
+      add :company_id, references(:companies, on_delete: :delete_all), null: true
     end
 
     create index(:users, [:company_id])

@@ -3,9 +3,9 @@ defmodule Rentaj.Repo.Migrations.CreateOrders do
 
   def change do
     create table(:orders) do
-      add :item_id, references(:items, on_delete: :nothing), null: false
-      add :renter_id, references(:users, on_delete: :nothing), null: false
-      add :customer_id, references(:users, on_delete: :nothing), null: false
+      add :item_id, references(:items, on_delete: :delete_all), null: false
+      add :renter_id, references(:users, on_delete: :delete_all), null: false
+      add :customer_id, references(:users, on_delete: :delete_all), null: false
       add :start_date, :utc_datetime, null: false
       add :end_date, :utc_datetime, null: false
       add :delivery, :boolean, null: false

@@ -29,6 +29,19 @@ defmodule RentajWeb.Resolvers.ItemResolver do
     end
   end
 
+  def delete_item(_, %{id: id}, %{context: %{current_user: current_user}}) do
+    item = Items.get_item!(id)
+
+    if current_user.id != item.user_id do
+      {:error, "You are not the owner of this item."}
+    else
+      case Items.delete_item(item) do
+        {:ok, _} -> {:ok, true}
+        {:error, changeset} -> {:error, changeset}
+      end
+    end
+  end
+
   def get_items(_, _, _) do
     case Items.list_items() do
       [] -> {:error, "no items"}
