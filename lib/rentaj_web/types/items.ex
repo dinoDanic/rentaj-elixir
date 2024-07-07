@@ -34,7 +34,7 @@ defmodule RentajWeb.Types.Items do
       resolve(&ItemResolver.get_item_availability_7_days/3)
     end
 
-    field :category, :category do
+    field :category, non_null(:category) do
       resolve(&ItemResolver.preload_cateogry/3)
     end
   end
