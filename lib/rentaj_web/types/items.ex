@@ -46,6 +46,10 @@ defmodule RentajWeb.Types.Items do
     field :location_id, non_null(:string)
   end
 
+  input_object :update_item_input do
+    field :description, :string
+  end
+
   input_object :item_by_id_input do
     field :item_id, non_null(:id)
   end

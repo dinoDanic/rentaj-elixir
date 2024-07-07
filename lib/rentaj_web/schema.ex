@@ -93,6 +93,13 @@ defmodule RentajWeb.Schema do
       resolve(&ItemResolver.create_item/3)
     end
 
+    @desc "update a item"
+    field :update_item, :item do
+      arg(:input, :update_item_input)
+      arg(:id, :id)
+      resolve(&ItemResolver.update_item/3)
+    end
+
     @desc "Create a order"
     field :create_order, :order do
       arg(:input, :create_order_input)
