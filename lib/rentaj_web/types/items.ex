@@ -52,6 +52,10 @@ defmodule RentajWeb.Types.Items do
 
   input_object :update_item_input do
     field :description, :string
+    field :price_per_day, :decimal
+    field :capara, :decimal
+    field :delivery, :boolean
+    field :pick_up, :boolean
   end
 
   input_object :item_by_id_input do
