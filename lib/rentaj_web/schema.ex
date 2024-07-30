@@ -7,6 +7,7 @@ defmodule RentajWeb.Schema do
   alias RentajWeb.Resolvers.CategoryResolver
   alias RentajWeb.Resolvers.AccountResolver
   alias RentajWeb.Resolvers.OrderResolver
+  alias RentajWeb.Resolvers.ImageResolver
 
   import_types(RentajWeb.Types.Accounts)
   import_types(RentajWeb.Types.Categories)
@@ -15,6 +16,7 @@ defmodule RentajWeb.Schema do
   import_types(RentajWeb.Types.Orders)
   import_types(RentajWeb.Types.Locations)
   import_types(RentajWeb.Types.Companies)
+  import_types(RentajWeb.Types.Images)
 
   connection(node_type: :item)
 
@@ -110,6 +112,12 @@ defmodule RentajWeb.Schema do
     field :create_order, :order do
       arg(:input, :create_order_input)
       resolve(&OrderResolver.create_order/3)
+    end
+
+    @desc "add image"
+    field :add_image_to_item, :image do
+      arg(:input, :add_image_to_item_input)
+      resolve(&ImageResolver.add_image/3)
     end
   end
 

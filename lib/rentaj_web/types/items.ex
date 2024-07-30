@@ -1,4 +1,5 @@
 defmodule RentajWeb.Types.Items do
+  alias RentajWeb.Resolvers.ImageResolver
   alias RentajWeb.Resolvers.ItemResolver
   alias RentajWeb.Resolvers.AccountResolver
   alias RentajWeb.Resolvers.LocationResolver
@@ -36,6 +37,10 @@ defmodule RentajWeb.Types.Items do
 
     field :category, non_null(:category) do
       resolve(&ItemResolver.preload_cateogry/3)
+    end
+
+    field :images, list_of(:image) do
+      resolve(&ImageResolver.preload_images/3)
     end
   end
 
